@@ -3,7 +3,6 @@ import initialState from './initialState'
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case 'ADD_STOCK':
-			// console.log(action)
 			return Object.assign({}, state, {
 				stocks: [...state.stocks, action.stock],
 				labels: action.stock.labels

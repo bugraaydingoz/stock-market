@@ -7,7 +7,6 @@ import './StockChart.css'
 class StockChart extends Component {
 	render() {
 		let datasets = []
-		console.log(this.props.labels)
 		for (let i = 0; i < this.props.stocks.length; i++) {
 			let colorIndex = i % this.props.colors.length
 			let newData = {

@@ -7,10 +7,6 @@ const storeFile = './store/store.json'
 
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname + '/client/build/index.html'))
-})
-
 io.on('connection', socket => {
 	console.log('a user connected')
 
@@ -45,6 +41,10 @@ io.on('connection', socket => {
 	socket.on('save stocks', json => {
 		Stock.write(storeFile, json)
 	})
+})
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
 const ioPort = 8001

@@ -1,12 +1,33 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
 const io = require('socket.io')()
 const path = require('path')
 const Stock = require('./controllers/Stock')
 
 const storeFile = './store/store.json'
 
+app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'client/build')))
+
+// enable cors
+var corsOption = {
+	origin: true,
+	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+	credentials: true,
+	exposedHeaders: ['x-auth-token']
+}
+app.use(cors(corsOption))
+
+//rest API requirements
+app.use(
+	bodyParser.urlencoded({
+		extended: true
+	})
+)
+app.use(bodyParser.json())
 
 io.on('connection', socket => {
 	console.log('a user connected')

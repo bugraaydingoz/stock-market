@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import store from '../index'
 
-const socket = io('192.168.2.10:8001')
+const socket = io.connect(window.location.hostname)
 
 class StockItem extends React.Component {
 	handleDeleteButton(label) {

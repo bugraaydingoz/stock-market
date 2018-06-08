@@ -29,6 +29,12 @@ app.use(
 )
 app.use(bodyParser.json())
 
+// configure io for heroku
+io.configure(function() {
+	io.set('transports', ['xhr-polling'])
+	io.set('polling duration', 10)
+})
+
 io.on('connection', socket => {
 	console.log('a user connected')
 
@@ -69,9 +75,9 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
-const ioPort = process.env.port || 8001
-io.listen(ioPort)
-console.log('IO listening on port ', ioPort)
+// const ioPort = process.env.port || 8001
+// io.listen(ioPort)
+// console.log('IO listening on port ', ioPort)
 
 const appPort = process.env.port || 4000
 app.listen(appPort)

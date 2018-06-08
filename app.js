@@ -69,7 +69,7 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 
-const ioPort = 8001
+const ioPort = process.env.port || 8001
 io.listen(ioPort)
 console.log('IO listening on port ', ioPort)
 

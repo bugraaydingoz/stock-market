@@ -3,7 +3,10 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const io = require('socket.io')()
+const io = require('socket.io')({
+	transports: ['xhr-polling'],
+	'polling duration': 10
+})
 const path = require('path')
 const Stock = require('./controllers/Stock')
 
@@ -28,12 +31,6 @@ app.use(
 	})
 )
 app.use(bodyParser.json())
-
-// configure io for heroku
-io.configure(function() {
-	io.set('transports', ['xhr-polling'])
-	io.set('polling duration', 10)
-})
 
 io.on('connection', socket => {
 	console.log('a user connected')

@@ -16,7 +16,7 @@ app.get('*', (req, res) => {
 // io.listen(ioPort)
 // console.log('IO listening on port ', ioPort)
 
-const appPort = process.env.port || 4000
+const appPort = process.env.PORT || 4000
 const server = app.listen(appPort)
 console.log('server running at ', appPort)
 

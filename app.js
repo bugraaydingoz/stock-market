@@ -1,12 +1,7 @@
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-const io = require('socket.io')({
-	transports: ['xhr-polling'],
-	'polling duration': 10
-})
+//const io = require('socket.io')()
+const io = socketIO(app)
 const path = require('path')
 const Stock = require('./controllers/Stock')
 

@@ -1,30 +1,26 @@
 const express = require('express')
 const app = express()
-const io = require('socket.io')(app)
+const socket = require('socket.io')
 const path = require('path')
 const Stock = require('./controllers/Stock')
 
 const storeFile = './store/store.json'
 
-app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-// enable cors
-var corsOption = {
-	origin: true,
-	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-	credentials: true,
-	exposedHeaders: ['x-auth-token']
-}
-app.use(cors(corsOption))
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
 
-//rest API requirements
-app.use(
-	bodyParser.urlencoded({
-		extended: true
-	})
-)
-app.use(bodyParser.json())
+// const ioPort = process.env.port || 8001
+// io.listen(ioPort)
+// console.log('IO listening on port ', ioPort)
+
+const appPort = process.env.port || 4000
+const server = app.listen(appPort)
+console.log('server running at ', appPort)
+
+const io = socket(server)
 
 io.on('connection', socket => {
 	console.log('a user connected')
@@ -61,17 +57,5 @@ io.on('connection', socket => {
 		Stock.write(storeFile, json)
 	})
 })
-
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname + '/client/build/index.html'))
-})
-
-// const ioPort = process.env.port || 8001
-// io.listen(ioPort)
-// console.log('IO listening on port ', ioPort)
-
-const appPort = process.env.port || 4000
-app.listen(appPort)
-console.log('server running at ', appPort)
 
 module.exports = app

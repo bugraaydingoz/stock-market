@@ -5,7 +5,7 @@ import StockItem from './StockItem'
 import './ControlCenter.css'
 import store from '../index'
 
-const socket = io.connect(window.location.hostname)
+const socket = io.connect()
 
 class ControlCenter extends Component {
 	constructor(props) {

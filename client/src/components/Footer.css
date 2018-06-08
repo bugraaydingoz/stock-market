@@ -1,0 +1,16 @@
+.footer {
+	text-align: center;
+	margin: 40px auto;
+	font-size: 12px;
+	cursor: pointer;
+	background-color: rgb(237, 238, 239) !important;
+}
+
+.footer > a {
+	color: rgb(42, 43, 44);
+	text-decoration: none;
+}
+
+.footer > a > p > svg {
+	color: red;
+}

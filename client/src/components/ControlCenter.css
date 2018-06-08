@@ -1,0 +1,13 @@
+.is-block {
+	display: block;
+}
+
+.is-bg-dark {
+	background-color: rgb(42, 43, 44);
+	color: white;
+}
+
+.is-bg-white {
+	background-color: white;
+	color: rgb(42, 43, 44);
+}

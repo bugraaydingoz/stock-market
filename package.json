@@ -1,0 +1,14 @@
+{
+	"name": "stock-market",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node app.js",
+		"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+	},
+	"dependencies": {
+		"express": "^4.16.3",
+		"node-fetch": "^2.1.2",
+		"socket.io": "^2.1.1"
+	}
+}

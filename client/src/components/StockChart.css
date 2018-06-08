@@ -1,0 +1,12 @@
+.stock-chart {
+	width: 100%;
+	margin: auto;
+	/* padding: 15px; */
+}
+
+@media (max-width: 768px) {
+	.stock-chart {
+		/* width: 95%; */
+		height: 300px;
+	}
+}
